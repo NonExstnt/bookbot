@@ -11,6 +11,8 @@ def get_char_count(text):
                 chars[char] += 1
             else:
                 chars[char] = 1
+        else:
+            continue
     return chars
 
 def sort_on(dict):

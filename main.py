@@ -1,4 +1,5 @@
 from stats import get_num_words, get_char_count, sort_by_count
+import sys
 
 def get_book_text(file_path):
     with open(file_path) as f:
@@ -15,10 +16,17 @@ def format(file_path, num_words, char_num):
         print(f"{char_num[i]["char"]}: {char_num[i]["num"]}")
     print("============= END ===============")
 
+def arg_check():
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    return sys.argv[1]
+
 def main():
-    frankenstein_text = get_book_text("books/frankenstein.txt")
+    file_path = arg_check()
+    frankenstein_text = get_book_text(file_path)
     num_words = get_num_words(frankenstein_text)
     char_count = get_char_count(frankenstein_text)
     sorted_char = sort_by_count(char_count)
-    format("books/frankenstein.txt", num_words, sorted_char)
+    format(file_path, num_words, sorted_char)
 main()
